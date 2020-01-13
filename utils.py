@@ -21,7 +21,7 @@ def get_path(train=False, val=False, test=False, question=False, answer=False):
     # Get the correct type (Q/A) format
     json = None
     if question:
-        json = 'V2_OpenEnded_mscoco_' + _set + '_questions.json'
+        json = 'v2_OpenEnded_mscoco_' + _set + '_questions.json'
     else:
         if test:
             # Just load validation data in the test=answer=True case, will be ignored anyway
