@@ -2,7 +2,7 @@ import itertools
 from collections import Counter
 
 
-def extract_vocab(iterable, top_k=None, start=0):
+def create_vocab(iterable, top_k=None, start=0):
     """
         Turns an iterable of list of tokens into a vocabulary.
         These tokens could be single answers or word tokens in questions.

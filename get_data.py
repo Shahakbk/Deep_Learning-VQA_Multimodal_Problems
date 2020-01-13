@@ -1,9 +1,5 @@
 import os
-
-zip_dir = 'data/'
-questions_dir = 'data/Questions/'
-annotations_dir = 'data/Annotations/'
-images_dir = 'data/Images/'
+from config import zip_dir, qa_dir, images_dir
 
 
 def get_data():
@@ -18,11 +14,11 @@ def get_data():
     os.system('wget http://images.cocodataset.org/zips/test2015.zip -P ' + zip_dir)
 
     # Unzip the data
-    os.system('unzip ' + zip_dir + 'v2_Questions_Train_mscoco.zip -d ' + questions_dir)
-    os.system('unzip ' + zip_dir + 'v2_Questions_Val_mscoco.zip -d ' + questions_dir)
-    os.system('unzip ' + zip_dir + 'v2_Questions_Test_mscoco.zip -d ' + questions_dir)
-    os.system('unzip ' + zip_dir + 'v2_Annotations_Train_mscoco.zip -d ' + annotations_dir)
-    os.system('unzip ' + zip_dir + 'v2_Annotations_Val_mscoco.zip -d ' + annotations_dir)
+    os.system('unzip ' + zip_dir + 'v2_Questions_Train_mscoco.zip -d ' + qa_dir)
+    os.system('unzip ' + zip_dir + 'v2_Questions_Val_mscoco.zip -d ' + qa_dir)
+    os.system('unzip ' + zip_dir + 'v2_Questions_Test_mscoco.zip -d ' + qa_dir)
+    os.system('unzip ' + zip_dir + 'v2_Annotations_Train_mscoco.zip -d ' + qa_dir)
+    os.system('unzip ' + zip_dir + 'v2_Annotations_Val_mscoco.zip -d ' + qa_dir)
     os.system('unzip ' + zip_dir + 'train2014.zip -d ' + images_dir)
     os.system('unzip ' + zip_dir + 'val2014.zip -d ' + images_dir)
     os.system('unzip ' + zip_dir + 'test2015.zip -d ' + images_dir)
