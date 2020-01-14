@@ -3,7 +3,10 @@ import itertools
 import re
 from utils import get_path
 from collections import Counter
-from config import max_answers, vocabulary_dir
+from config import parameters, paths
+
+vocabulary_dir = paths["vocabulary_dir"]
+max_answers = parameters['max_answers']
 
 
 def create_vocab(iterable, top_k=None, start=0):
@@ -105,5 +108,4 @@ def prep_qa():
     # Saves the vocabulary as json in the defined path
     with open(vocabulary_dir, 'w') as fd:
         json.dump(vocabularies, fd)
-
 

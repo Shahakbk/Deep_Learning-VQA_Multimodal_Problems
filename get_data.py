@@ -1,5 +1,10 @@
 import os
-from config import zip_dir, qa_dir, images_dir
+from config import paths
+
+# Get the paths
+zip_dir = paths["zip_dir"]
+qa_dir = paths["qa_dir"]
+images_dir = paths["images_dir"]
 
 
 def get_data():

@@ -7,7 +7,11 @@ zip_dir = 'data/'  # Base data directory where the zips are downloaded to
 qa_dir = 'data/QA/'  # Directory containing the questions and annotations jsons
 images_dir = 'data/Images/'  # Directory containing the images jsons
 vocabulary_dir = 'vocabulary.json'  # Directory where the created vocabularies jsons for Q&A are saved to
-
+paths = {"zip_dir": zip_dir,
+         "qa_dir": qa_dir,
+         "images_dir": images_dir,
+         "vocabulary_dir": vocabulary_dir}
 
 # Training parameters
 max_answers = 3000  # Hyper parameter for the answers vocabulary creation
+parameters = {"max_answers": max_answers}
