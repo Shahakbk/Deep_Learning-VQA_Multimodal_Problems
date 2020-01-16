@@ -1,5 +1,8 @@
 import os
-from config import qa_dir
+import torchvision.transforms as transforms
+from config import paths
+
+qa_dir = paths["qa_dir"]
 
 
 def get_path(train=False, val=False, test=False, question=False, answer=False):
@@ -29,3 +32,16 @@ def get_path(train=False, val=False, test=False, question=False, answer=False):
         json = 'v2_mscoco_' + _set + '_annotations.json'
 
     return os.path.join(qa_dir, json)
+
+
+def get_transform(target_size, central_fraction=1.0):
+    """
+        Create a transformation based on the scaling, crop size & target size and normalization
+    """
+    return transforms.Compose([
+        transforms.Scale(int(target_size / central_fraction)),
+        transforms.CenterCrop(target_size),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                             std=[0.229, 0.224, 0.225]),
+        ])
