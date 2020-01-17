@@ -1,16 +1,20 @@
 import torch.hub as hub
 import torch.backends.cudnn as cudnn
+import torch.nn as nn
 import h5py
+import resnet
 from config import paths, parameters
 from utils import get_transform
 from dataset import CocoImages, Composite
 from torch.utils.data import DataLoader
 from torch.autograd import Variable
+from torch import load
 from tqdm import tqdm
 
 train_path = paths["train_path"]
 val_path = paths["val_path"]
 preprocessed_dir = paths["preprocessed_dir"]
+pretrained_path = paths["pretrained_path"]
 
 image_size = parameters["image_size"]
 central_fraction = parameters["central_fraction"]
@@ -18,6 +22,27 @@ preprocess_batch_size = parameters["preprocess_batch_size"]
 data_workers = parameters["data_workers"]
 output_size = parameters["output_size"]
 output_features = parameters["output_features"]
+
+
+class Net(nn.Module):
+    """
+        Wrapper class for the pre-trained ResNet-152 model
+    """
+
+    def __init__(self):
+        super(Net, self).__init__()
+        net = resnet.resnet152(pretrained=True)
+        net.load_state_dict(load(pretrained_path))
+        self.model = net
+
+        def save_output(module, input, output):
+            self.buffer = output
+
+        self.model.layer4.register_forward_hook(save_output)
+
+    def forward(self, x):
+        self.model(x)
+        return self.buffer
 
 
 def create_loader(*_paths):
@@ -41,8 +66,9 @@ def prep_images(device):
     cudnn.benchmark = True
 
     # Load ResNet-152 pre-trained on ImageNet, to be used for pre-processing the images
-    net = hub.load('pytorch/vision:v0.4.2', 'resnet152', pretrained=True)
-    net = net.to(device)
+    # net = hub.load('pytorch/vision:v0.4.2', 'resnet152', pretrained=True)
+    # net = net.to(device)
+    net = Net().cuda()
     net.eval()
 
     # Create loaders for train & validation data sets

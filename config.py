@@ -11,6 +11,7 @@ preprocessed_dir = 'data/resnet-14x14.h5'  # Directory where preprocessed featur
 train_path = 'data/Images/Train/train2014/'  # Path to train images directory
 val_path = 'data/Images/Validation/val2014/'  # Path to validation images directory
 test_path = 'data/Images/Test/test2015/'  # Path to test images directory
+pretrained_path = 'data/resnet152-caffe.pth'  # Path to pre-trained ResNet-152 model
 
 paths = {"zip_dir": zip_dir,
          "qa_dir": qa_dir,
@@ -19,7 +20,8 @@ paths = {"zip_dir": zip_dir,
          "preprocessed_dir": preprocessed_dir,
          "train_path": train_path,
          "val_path": val_path,
-         "test_path": test_path
+         "test_path": test_path,
+         "pretrained_path": pretrained_path
          }
 
 # Training parameters TODO - to be modified
