@@ -10,7 +10,7 @@ vocabulary_dir = 'data/vocabulary.json'  # Directory where the created vocabular
 preprocessed_dir = 'data/resnet-14x14.h5'  # Directory where preprocessed features are saved to
 train_path = 'data/Images/Train/train2014/'  # Path to train images directory
 val_path = 'data/Images/Validation/val2014/'  # Path to validation images directory
-test_path = 'data/Images/Test/test2015'  # Path to test images directory
+test_path = 'data/Images/Test/test2015/'  # Path to test images directory
 
 paths = {"zip_dir": zip_dir,
          "qa_dir": qa_dir,
