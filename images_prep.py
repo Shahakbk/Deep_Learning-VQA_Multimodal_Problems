@@ -8,7 +8,7 @@ from utils import get_transform
 from dataset import CocoImages, Composite
 from torch.utils.data import DataLoader
 from torch.autograd import Variable
-from torch import load
+from torch import load, no_grad
 from tqdm import tqdm
 
 train_path = paths["train_path"]
@@ -31,7 +31,9 @@ class Net(nn.Module):
 
     def __init__(self):
         super(Net, self).__init__()
-        net = resnet.resnet152(pretrained=True)
+        #net = resnet.resnet152(pretrained=True)
+        #net = resnet.resnet34(pretrained=True)
+        net = resnet.resnet18(pretrained=True)
         net.load_state_dict(load(pretrained_path))
         self.model = net
 
@@ -85,10 +87,11 @@ def prep_images(device):
         coco_ids = fd.create_dataset('ids', shape=(len(loader.dataset),), dtype='int32')
 
         i = j = 0
-        for ids, images in tqdm(loader):
-            images = Variable(images.cuda(async=True), volatile=True)
-            out = net(images)
-            j = i + images.size(0)
-            features[i:j, :, :] = out.data.cpu().numpy().astype('float16')
-            coco_ids[i:j] = ids.numpy().astype('int32')
-            i = j
+        with no_grad():
+            for ids, images in tqdm(loader):
+                images = Variable(images.cuda(async=True))
+                out = net(images)
+                j = i + images.size(0)
+                features[i:j, :, :] = out.data.cpu().numpy().astype('float16')
+                coco_ids[i:j] = ids.numpy().astype('int32')
+                i = j
