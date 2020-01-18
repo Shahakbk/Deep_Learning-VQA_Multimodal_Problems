@@ -26,20 +26,28 @@ paths = {"zip_dir": zip_dir,
          "pretrained_path": pretrained_path
          }
 
-# Training parameters TODO - to be modified
-preprocess_batch_size = 128  # Hyper param that can be tuned
+# Training parameters
+preprocess_batch_size = 64
+batch_size = 256
 data_workers = 8
 image_size = 448  # Scale the shorter end of an image to this size and centre crop
 output_size = image_size // 32  # The size of the feature maps after processing through a network
 output_features = 512  # The number of feature maps thereof
 central_fraction = 0.875  # The amount to take from the image centre when cropping with centre crop
 max_answers = 3000  # Hyper parameter for the answers vocabulary creation
+initial_lr = 1e-3  # default Adam lr
+lr_halflife = 50000  # in iterations
+epochs = 50
 
 parameters = {"preprocess_batch_size": preprocess_batch_size,
+              "batch_size": batch_size,
               "data_workers": data_workers,
               "image_size": image_size,
               "output_size": output_size,
               "output_features": output_features,
               "central_fraction": central_fraction,
               "max_answers": max_answers,
+              "initial_lr": initial_lr,
+              "lr_halflife": lr_halflife,
+              "epochs": epochs
               }
