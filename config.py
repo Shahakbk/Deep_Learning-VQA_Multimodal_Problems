@@ -27,7 +27,7 @@ paths = {"zip_dir": zip_dir,
          }
 
 # Training parameters TODO - to be modified
-preprocess_batch_size = 64  # Hyper param that can be tuned
+preprocess_batch_size = 128  # Hyper param that can be tuned
 data_workers = 8
 image_size = 448  # Scale the shorter end of an image to this size and centre crop
 output_size = image_size // 32  # The size of the feature maps after processing through a network
