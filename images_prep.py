@@ -64,7 +64,7 @@ def create_loader(*_paths):
     return data_loader
 
 
-def prep_images(device):
+def prep_images():
     cudnn.benchmark = True
 
     # Load ResNet-152 pre-trained on ImageNet, to be used for pre-processing the images

@@ -108,4 +108,3 @@ def prep_qa():
     # Saves the vocabulary as json in the defined path
     with open(vocabulary_dir, 'w') as fd:
         json.dump(vocabularies, fd)
-
