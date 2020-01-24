@@ -28,7 +28,7 @@ paths = {"zip_dir": zip_dir,
 
 # Training parameters
 preprocess_batch_size = 64
-batch_size = 256
+batch_size = 128
 data_workers = 8
 image_size = 448  # Scale the shorter end of an image to this size and centre crop
 output_size = image_size // 32  # The size of the feature maps after processing through a network
